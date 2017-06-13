@@ -17,11 +17,11 @@ public class Reader{
 	}
 
 	public File getFile(){
-		return file;
+		return this.file;
 	}
 
 	public String[] getTextData(){
-		return textData;
+		return this.textData;
 	}
 
 	public void readFile() throws IOException{
@@ -30,11 +30,12 @@ public class Reader{
 
 		int lines = readLines(file);
 
-		String[] textData = new String[lines];
+		textData = new String[lines];
 
 		for(int i=0; i < lines; i++){
 			textData[i] = br.readLine();
 			//System.out.println(textData[i]);
+			//System.out.println(textData[i].length());
 		}
 	}
 
