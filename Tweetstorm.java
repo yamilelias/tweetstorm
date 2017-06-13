@@ -8,9 +8,21 @@ import java.io.IOException;
 
 public class Tweetstorm {
 
+	/**
+	 * The object that will save all the lines of the input file in the main class.
+	 */
 	static List<String> textData;
+
+	/**
+	 * Index of the tweetstorm.
+	 */
 	static int index = 1;
 
+	/**
+	 * Main method.
+	 * @see Reader
+	 * @return void
+	 */
 	public static void main(String args[]){
 		if(args.length > 0) {
             File file = new File(args[0]);
@@ -26,10 +38,17 @@ public class Tweetstorm {
 			}
         }
         else{
-        	System.out.println("You forgot to provide a file, don't you?");
+        	System.out.println("You forgot to provide a file, don't you?"); // Notice the user of the missing input file
+        	// TODO: Add an easter egg after the message
         }
 	}
 
+	/**
+	 * If a string is invalid (is bigger than 140 characters), then tokenize it into smaller
+	 * strings so they can be used later.
+	 * @param String
+	 * @return String[]
+	 */
 	public static String[] tokenizeInvalid(String text){
 		StringTokenizer st = new StringTokenizer(text, ".");
 		String[] tokenizedText = new String[st.countTokens()];
@@ -43,16 +62,23 @@ public class Tweetstorm {
 		return tokenizedText;
 	}
 
+	/**
+	 * Display each one of the comments of the tweetstorm in console.
+	 * @return void
+	 * @see tokenizeInvalid()
+	 */
 	public static void display(){
         Stack<String> stack = new Stack<String>(); 
         stack.addAll(textData);
+
+        // Extra String Array if a sentence is too large
         String[] auxTextData = null;
 
         String text = "";
 
         while(!stack.empty()){
 
-        	text = stack.pop();
+        	text = stack.pop(); // Save what it was taken from the stack into a variable
 
         	if(text.length() <= 140){
         		// Avoid unwanted spaces
