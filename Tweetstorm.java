@@ -40,6 +40,26 @@ public class Tweetstorm {
         }
         else{
         	System.out.println("You forgot to provide a file, don't you? \nDon't worry, here is something better: \n\n"); // Notice the user of the missing input file
+        	       	
+        	File file = new File(".easter");
+        	Reader reader = new Reader(file);
+
+        	try{
+            	// Try to read it, if is not possible, throw Exception
+				reader.readFile();
+
+				// Get information ready
+				String[] textData = reader.getTextData();
+
+				for(int i=0; i<textData.length;i++){
+					System.out.println(textData[i]);
+				}
+
+				System.out.println("Enjoy it :)");
+			}
+			catch(IOException e){
+				System.out.println("Wait... you did something to the .easter file, don't you? :(");
+			}
         }
 	}
 }
